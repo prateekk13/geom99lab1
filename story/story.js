@@ -27,8 +27,6 @@ function initMap() {
 }
 
 const locations = [
-    { lat: 29.3909, lng: 76.9635, title: "Location 1" },
-    { lat: 16.5004, lng: 151.7415, title: "Bora" },
     { lat: 28.3949, lng: 84.1240, title: "Nepal" }, 
     { lat: 28.5983, lng: 83.9310, title: "Himalayas" }, 
     { lat: 36.0001, lng: 76.0000, title: "Karakoram" }, 
