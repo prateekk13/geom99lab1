@@ -36,7 +36,6 @@ const locations = [
     { lat: 42.0000, lng: 80.0000, title: "Tian Shan" }, 
     { lat: 36.0000, lng: 84.0000, title: "Kunlun" }, 
     { lat: 28.5983, lng: 83.9310, title: "Transhimalaya" }, 
-    { lat: 21.1608, lng: 66.7752, title: "Andes" }, 
     { lat: 36.3286, lng: 72.9987, title: "Hindu Raj" }, 
     { lat: 63.0694, lng: 151.0072, title: "Alaska Range" }, 
     { lat: 60.5000, lng: 139.5000, title: "Saint Elias Mountains" }, 
