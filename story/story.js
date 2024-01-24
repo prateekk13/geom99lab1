@@ -42,8 +42,5 @@ const locations = [
     { lat: 36.3286, lng: 72.9987, title: "Hindu Raj" }, 
     { lat: 63.0694, lng: 151.0072, title: "Alaska Range" }, 
     { lat: 60.5000, lng: 139.5000, title: "Saint Elias Mountains" }, 
-    { lat: 42.6366, lng: 44.1576, title: "Caucasus Mountains" }, 
-
-
-  
+    { lat: 42.6366, lng: 44.1576, title: "Caucasus Mountains" },  
 ];
