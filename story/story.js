@@ -5,7 +5,7 @@ function initMap() {
   });
 
   // Create an array of alphabetical characters used to label the markers.
-  const labels = "12345678910ABCDEFGH";
+  const labels = "123456789ABCDEFGH";
 
   // Add some markers to the map.
   // Note: The code uses the JavaScript Array.prototype.map() method to
