@@ -20,9 +20,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .route({
       origin: { lat:44.343809, lng: -78.740462 },
       destination: { lat: 44.34130783, lng: -78.741153 },
-      waypoints: [ 
-        { location;new google.maps.LatLng( 44.349225413, -78.755460118)   }
-]
+
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
