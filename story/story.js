@@ -20,7 +20,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .route({
       origin: { lat:44.343809, lng: -78.740462 },
       destination: { lat: 44.34130783, lng: -78.741153 },
-      Waypoint: { lat: 44.34917163 , lng: -78.75538503 },
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
