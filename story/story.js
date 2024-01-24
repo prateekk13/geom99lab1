@@ -22,12 +22,7 @@ function initMap() {
   });
 }
 const locations = [
- 
   {lat: 29.3909, lng: 76.9635},
-  title: "Pnp",
-  },
-   {
   { lat: 16.5004, lng: 151.7415},
  title: "Bora",
-   },
 ];
