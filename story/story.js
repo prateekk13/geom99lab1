@@ -24,11 +24,11 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         { location:new google.maps.LatLng( 44.3492254, -78.7554601) }
         { location:new google.maps.LatLng( 44.3593604, -78.741343) }
         { location:new google.maps.LatLng( 44.3588230, -78.7344795) }
-]
+],
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
       travelMode: google.maps.TravelMode[selectedMode],
-    })
+    });
 
 window.initMap = initMap;
