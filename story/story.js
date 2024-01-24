@@ -29,5 +29,5 @@ function initMap() {
 const locations = [
   { lat: 29.3909, lng: 76.9635, title: "Location 1" },
   { lat: 16.5004, lng: 151.7415, title: "Bora" },
-  // Add more locations as needed
+ { lat: 28.3949, lng: 84.1240, title: "Nepal" }, 
 ];
