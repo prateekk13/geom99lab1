@@ -5,7 +5,7 @@ function initMap() {
   });
 
   // Create an array of alphabetical characters used to label the markers.
-  const labels = "12345678910111213";
+  const labels = "12345678910ABCDEFGH";
 
   // Add some markers to the map.
   // Note: The code uses the JavaScript Array.prototype.map() method to
@@ -32,7 +32,7 @@ const locations = [
     { lat: 28.3949, lng: 84.1240, title: "Nepal" }, 
     { lat: 28.5983, lng: 83.9310, title: "Himalayas" }, 
     { lat: 36.0001, lng: 76.0000, title: "Karakoram" }, 
-    { lat: 36.8922, lng: 73.2633°, title: "Hindu Kush" }, 
+    { lat: 36.8922, lng: 73.2633, title: "Hindu Kush" }, 
     { lat: 39.0000, lng: 72.0000, title: "pamirs" }, 
     { lat: 27.5000, lng: 99.0000, title: "Hengduan Mountains" }, 
     { lat: 42.0000, lng: 80.0000, title: "Tian Shan" }, 
