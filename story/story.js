@@ -3,26 +3,31 @@ function initMap() {
     zoom: 5,
     center: { lat: 29.3909, lng: 76.9635 },
   });
+
   // Create an array of alphabetical characters used to label the markers.
   const labels = "123456";
+
   // Add some markers to the map.
   // Note: The code uses the JavaScript Array.prototype.map() method to
   // create an array of markers based on a given "locations" array.
   // The map() method here has nothing to do with the Google Maps API.
   const markers = locations.map((location, i) => {
     return new google.maps.Marker({
-      position: location,
+      position: { lat: location.lat, lng: location.lng },
       label: labels[i % labels.length],
+      title: location.title,
     });
   });
+
   // Add a marker clusterer to manage the markers.
   new MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
   });
 }
+
 const locations = [
-  {lat: 29.3909, lng: 76.9635},
-  { lat: 16.5004, lng: 151.7415},
- title: "Bora",
+  { lat: 29.3909, lng: 76.9635, title: "Location 1" },
+  { lat: 16.5004, lng: 151.7415, title: "Bora" },
+  // Add more locations as needed
 ];
