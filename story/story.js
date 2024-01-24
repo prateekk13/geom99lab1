@@ -26,10 +26,5 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       // "property."
       travelMode: google.maps.TravelMode[selectedMode],
     })
-    .then((response) => {
-      directionsRenderer.setDirections(response);
-    })
-    .catch((e) => window.alert("Directions request failed due to " + status));
-}
 
 window.initMap = initMap;
