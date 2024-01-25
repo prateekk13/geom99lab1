@@ -1,51 +1,35 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
+// In this example, we center the map, and add a marker, using a LatLng object
+// literal instead of a google.maps.LatLng object. LatLng object literals are
+// a convenient way to add a LatLng coordinate and, in most cases, can be used
+// in place of a google.maps.LatLng object.
 let map;
-const chicago = { lat: 41.85, lng: -87.65 };
-
-/**
- * Creates a control that recenters the map on Chicago.
- */
-function createCenterControl(map) {
-  const controlButton = document.createElement("button");
-
-  // Set CSS for the control.
-  controlButton.classList.add('buttonStyle');
-
-  controlButton.textContent = "Center Map";
-  controlButton.title = "Click to recenter the map";
-  controlButton.type = "button";
-  // Setup the click event listeners: simply set the map to Chicago.
-  controlButton.addEventListener("click", () => {
-    map.setCenter(chicago);
-  });
-  return controlButton;
-}
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: { lat: 49.496675, lng: -102.65625 },
+  const mapOptions = {
+    zoom: 8,
+    center: { lat: -34.397, lng: 150.644 },
+  };
+
+  map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+  const marker = new google.maps.Marker({
+    // The below line is equivalent to writing:
+    // position: new google.maps.LatLng(-34.397, 150.644)
+    position: { lat: -34.397, lng: 150.644 },
+    map: map,
+  });
+  // You can use a LatLng literal in place of a google.maps.LatLng object when
+  // creating the Marker object. Once the Marker object is instantiated, its
+  // position will be available as a google.maps.LatLng object. In this case,
+  // we retrieve the marker's position using the
+  // google.maps.LatLng.getPosition() method.
+  const infowindow = new google.maps.InfoWindow({
+    content: "<p>Marker Location:" + marker.getPosition() + "</p>",
   });
 
-  var georssLayer = new google.maps.KmlLayer({
-    url: "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss",
+  google.maps.event.addListener(marker, "click", () => {
+    infowindow.open(map, marker);
   });
-  georssLayer.setMap(map);
-
-  // Create the DIV to hold the control.
-  const centerControlDiv = document.createElement("div");
-  // Create the control.
-  const centerControl = createCenterControl(map);
-
-  // Append the control to the DIV.
-  centerControlDiv.appendChild(centerControl);
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-    centerControlDiv
-  );
 }
 
 window.initMap = initMap;
