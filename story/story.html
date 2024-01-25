@@ -1,17 +1,138 @@
 <html>
   <head>
-    <title>My</title>
+    <title>Circles</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script type="module" src="./story.js"></script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script> -->
+    <style>
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ #map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+    </style>
+    <script>
+      const citymap = {
+
+  New_delhi: {
+    center: { lat: 28.6177803941451, lng: 77.2168782793909 },
+     population: 27200,
+     title: "New delhi",
+     place: "Home"
+  },
+  Ranthambore_National_Park: {
+    center: { lat: 26.02036518685894, lng: 76.50321992485044 },
+     population: 27250,
+  },  
+  chittorgarh: {
+    center: { lat: 24.88422157326621, lng: 74.64740842241608 },
+    population: 60393
+  },
+  City_Palace: {
+    center: { lat: 24.57664697244455, lng: 73.68357526952333 },
+     population: 27200,
+  },
+  mount_abu: {
+    center: { lat: 24.593911903869614, lng: 72.71295579713782 },
+    population: 38578,
+  },
+
+  JaiFort: {
+    center: { lat: 26.912742483103976, lng: 70.91248055068289 },
+     population: 27250,
+    },
+
+  Junagarh: {
+    center: { lat: 28.02222376560671, lng: 73.31800692542724 },
+    population: 38578,
+  }
+};
+
+function initMap() {
+  // Create the map.
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 7,
+    center: { lat: 26.80034522, lng: 73.654839 },
+    mapTypeId: "terrain",
+  });
+
+  // Construct the circle for each value in citymap.
+  // Note: We scale the area of the circle based on the population.
+  for (const city in citymap) {
+    // Add the circle for this city to the map.
+    const cityCircle = new google.maps.Circle({
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 1,
+      fillColor: "#FF0000",
+      fillOpacity: 0.35,
+      map,
+      center: citymap[city].center,
+      radius: Math.sqrt(citymap[city].population) * 100,
+    });
+  }
+  const mytourCoordinates = [
+    {  lat: 28.6177803941451, lng: 77.2168782793909 },
+    { lat: 26.02036518685894, lng: 76.50321992485044 },
+    { lat: 24.88422157326621, lng: 74.64740842241608 },
+    { lat: 24.57664697244455, lng: 73.68357526952333 },
+    { lat: 24.593911903869614, lng: 72.71295579713782 },
+    { lat: 26.912742483103976, lng: 70.91248055068289},
+    {  lat: 28.02222376560671, lng: 73.31800692542724 },
+    {  lat: 28.6177803941451, lng: 77.2168782793909 },
+  ];
+  const mytour = new google.maps.Polyline({
+    path: mytourCoordinates,
+    geodesic: true,
+    strokeColor: "#FF0000",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+
+  mytour.setMap(map);
+}
+// Create the markers//
+// fieldvisits.forEach(({ center, title }, i) => {
+//     const pin = new PinElement({
+//       glyph: `${i + 1}`,
+//     });
+//     const marker = new AdvancedMarkerElement({
+//       position,
+//       map,
+//       title: `${i + 1}. ${title}`,
+//       content: pin.element,
+//     });
+// mytour.forEach(({ center, title,  place }, i) => {
+//     const pin = new PinElement({
+//       glyph: `${i + 1}`,
+//     });
+    const marker = new AdvancedMarkerElement({
+      center,
+      map,
+      title: `${i + 1}. ${title +" : "+ place}`,
+      content: pin.element,
+    });
+ // Add a click listener for each marker, and set up the info window//
+//  marker.addListener("click", ({ domEvent, latLng }) => {
+//       const { target } = domEvent;
+
+window.initMap = initMap;
+    </script>
   </head>
   <body>
-    <div id="floating-panel">
-      <b>Mode of Travel: </b>
-      <select id="mode">
-        <option value="WALKING">Walking</option>
-        <option value="BICYCLING">Bicycling</option>
-      </select>
-    </div>
     <div id="map"></div>
 
     <!-- 
@@ -25,48 +146,5 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE&callback=initMap&v=weekly"
       defer
     ></script>
-  </body>
-</html>
-<style>
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */
-      /* Optional: Makes the sample page fill the window. */
-      /* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
-#map {
-  height: 100%;
-}
-
-/* 
- * Optional: Makes the sample page fill the window. 
- */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-#floating-panel {
-  position: absolute;
-  top: 10px;
-  left: 25%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
-}   
-</style>
-  <body>
-    <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE&callback=initMap&v=weekly" ></script>
   </body>
 </html>
