@@ -1,22 +1,27 @@
 <html>
   <head>
-    <title>MyMap</title>
+    <title>Circles</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
-    <!-- <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script type="module" src="./index.js"></script> -->
-    <style>
-/* 
- * Always set the map height explicitly to define the size of the div element
+ <!-- /* Always set the map height explicitly to define the size of the div element
  * that contains the map. 
- */
+ */ -->
+ <style>
  #map {
   height: 100%;
+  margin-top: 1%;
+
 }
 
-/* 
- * Optional: Makes the sample page fill the window. 
- */
+.header{
+  font-size: xx-large;
+  text-align: center;
+  color:darkcyan;
+}
+
+#legend{
+  margin: 1%;
+}
+
 html,
 body {
   height: 100%;
@@ -30,36 +35,68 @@ body {
   New_delhi: {
     center: { lat: 28.6177803941451, lng: 77.2168782793909 },
      population: 27200,
+     color:"#2222b4",
      title: "New delhi",
-     place: "Home"
   },
   Ranthambore_National_Park: {
     center: { lat: 26.02036518685894, lng: 76.50321992485044 },
      population: 27250,
+     color:"#808080"
   },  
   chittorgarh: {
     center: { lat: 24.88422157326621, lng: 74.64740842241608 },
-    population: 60393
+    population: 60393,
+    color: "#000080"
   },
   City_Palace: {
     center: { lat: 24.57664697244455, lng: 73.68357526952333 },
      population: 27200,
+     color:"#663399"
   },
   mount_abu: {
     center: { lat: 24.593911903869614, lng: 72.71295579713782 },
     population: 38578,
+    color:"#8B4513"
   },
 
   JaiFort: {
     center: { lat: 26.912742483103976, lng: 70.91248055068289 },
      population: 27250,
+     color:"#EE82EE"
     },
 
   Junagarh: {
     center: { lat: 28.02222376560671, lng: 73.31800692542724 },
     population: 38578,
+    color:"#008080"
   }
 };
+
+ // Create an info window to share between markers.
+ const infoWindow = new InfoWindow();
+
+// Create the markers.
+tourStops.forEach(({position, title}, i) => {
+    const pin = new PinElement({
+        glyph: `${i + 1}`,
+    });
+
+    const marker = new AdvancedMarkerElement({
+        position,
+        map,
+        title: `${i + 1}. ${title}`,
+        content: pin.element,
+    });
+
+    // Add a click listener for each marker, and set up the info window.
+    marker.addListener('click', ({ domEvent, latLng }) => {
+        const { target } = domEvent;
+        infoWindow.close();
+        infoWindow.setContent(marker.title);
+        infoWindow.open(marker.map, marker);
+    });
+});
+
 
 function initMap() {
   // Create the map.
@@ -74,16 +111,18 @@ function initMap() {
   for (const city in citymap) {
     // Add the circle for this city to the map.
     const cityCircle = new google.maps.Circle({
-      strokeColor: "#FF0000",
+      strokeColor: citymap[city].color,
       strokeOpacity: 0.8,
       strokeWeight: 1,
-      fillColor: "#FF0000",
+      fillColor: citymap[city].color,
       fillOpacity: 0.35,
       map,
       center: citymap[city].center,
       radius: Math.sqrt(citymap[city].population) * 100,
     });
   }
+
+
   const mytourCoordinates = [
     {  lat: 28.6177803941451, lng: 77.2168782793909 },
     { lat: 26.02036518685894, lng: 76.50321992485044 },
@@ -97,43 +136,24 @@ function initMap() {
   const mytour = new google.maps.Polyline({
     path: mytourCoordinates,
     geodesic: true,
-    strokeColor: "#FF0000",
+    strokeColor: "#D2691E",
     strokeOpacity: 1.0,
     strokeWeight: 2,
   });
 
+  // Set the polyline on the map.
   mytour.setMap(map);
-}
-// Create the markers//
-// fieldvisits.forEach(({ center, title }, i) => {
-//     const pin = new PinElement({
-//       glyph: `${i + 1}`,
-//     });
-//     const marker = new AdvancedMarkerElement({
-//       position,
-//       map,
-//       title: `${i + 1}. ${title}`,
-//       content: pin.element,
-//     });
-// mytour.forEach(({ center, title,  place }, i) => {
-//     const pin = new PinElement({
-//       glyph: `${i + 1}`,
-//     });
-    const marker = new AdvancedMarkerElement({
-      center,
-      map,
-      title: `${i + 1}. ${title +" : "+ place}`,
-      content: pin.element,
-    });
- // Add a click listener for each marker, and set up the info window//
-//  marker.addListener("click", ({ domEvent, latLng }) => {
-//       const { target } = domEvent;
+    }
 
-window.initMap = initMap;
+// Add a click listener for each marker, and set up the info window.
+
     </script>
   </head>
   <body>
+    <h1 class="header" > My Tour to Rajasthan - A landmines of Tourists Attractions </h1>
+
     <div id="map"></div>
+    <h2> </h2>
 
     <!-- 
       The `defer` attribute causes the callback to execute after the full HTML
