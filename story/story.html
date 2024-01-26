@@ -6,6 +6,7 @@
  * that contains the map. 
  */ -->
  <style>
+   /* Styles for the map is taken from the https://developers.google.com/maps/documentation/javascript/examples/advanced-markers-basic-style google cloud platform and modified accordingly */
  #map {
   height: 100%;
   margin-top: 1%;
@@ -31,7 +32,7 @@ body {
     </style>
     <script>
       const citymap = {
-
+ /* Places I have visited and liked it. */
   New_delhi: {
     center: { lat: 28.6177803941451, lng: 77.2168782793909 },
      population: 27200,
@@ -71,11 +72,11 @@ body {
     color:"#008080"
   }
 };
-
- // Create an info window to share between markers.
+// Code taken from: https://developers.google.com/maps/documentation/javascript/examples 
+ 
  const infoWindow = new InfoWindow();
 
-// Create the markers.
+// For the markers.
 tourStops.forEach(({position, title}, i) => {
     const pin = new PinElement({
         glyph: `${i + 1}`,
@@ -88,7 +89,7 @@ tourStops.forEach(({position, title}, i) => {
         content: pin.element,
     });
 
-    // Add a click listener for each marker, and set up the info window.
+    // Tried to add listener for each marker, and set up the info window but it didnt worked out well.
     marker.addListener('click', ({ domEvent, latLng }) => {
         const { target } = domEvent;
         infoWindow.close();
@@ -107,9 +108,10 @@ function initMap() {
   });
 
   // Construct the circle for each value in citymap.
-  // Note: We scale the area of the circle based on the population.
+  // Note: Scaling the area of the circle based on the population.
+  // Note: Population is hypothetical 
   for (const city in citymap) {
-    // Add the circle for this city to the map.
+    // Circle for this city to the map.
     const cityCircle = new google.maps.Circle({
       strokeColor: citymap[city].color,
       strokeOpacity: 0.8,
@@ -155,8 +157,8 @@ function initMap() {
     <div id="map"></div>
     <h2> </h2>
 
-    <!-- 
-      The `defer` attribute causes the callback to execute after the full HTML
+    <!-- Code is from https://developers.google.com/maps/documentation/javascript/examples/advanced-markers-basic-style google cloud platform   
+         The `defer` attribute causes the callback to execute after the full HTML
       document has been parsed. For non-blocking uses, avoiding race conditions,
       and consistent behavior across browsers, consider loading using Promises.
       See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
